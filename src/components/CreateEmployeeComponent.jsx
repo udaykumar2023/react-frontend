@@ -152,7 +152,7 @@ class CreateEmployeeComponent extends Component {
     // }
 
     cancel(){
-        this.props.history.push('/contacts');
+        this.props.history.push(`/contacts/${this.state.accountid}`);
     }
 
     getTitle(){
