@@ -36,6 +36,7 @@ class ViewEmployeeComponent extends Component {
     render() {
         return (
             <div>
+                <h5 style={{textAlign: "right"}}>AWS# {this.state.employee.account_id}</h5>
                 <br></br>
                 <div className = "card col-md-6 offset-md-3">
                     <h3 className = "text-center"> View Contact Details</h3>
