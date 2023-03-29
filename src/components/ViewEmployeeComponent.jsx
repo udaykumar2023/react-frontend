@@ -46,6 +46,18 @@ class ViewEmployeeComponent extends Component {
                             <div> { this.state.employee.contact_id }</div>
                         </div>
                         <div className = "row">
+                            <label> First Name: &nbsp; &nbsp;</label>
+                            <div> { this.state.employee.first_name }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Last Name: &nbsp; &nbsp;</label>
+                            <div> { this.state.employee.last_name }</div>
+                        </div>
+                        <div className = "row">
+                            <label> Phone Number: &nbsp; &nbsp;</label>
+                            <div> { this.state.employee.phone_number }</div>
+                        </div>
+                        <div className = "row">
                             <label> Start date:  &nbsp; &nbsp;</label>
                             <div> { this.state.employee.start_date }</div>
                         </div>

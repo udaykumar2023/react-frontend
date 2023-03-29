@@ -16,8 +16,14 @@ class CreateEmployeeComponent extends Component {
             preferredStartTime:'',
             preferredEndTime:'',
             is_registered:'',
-            disableStartAndEndDate:false
+            disableStartAndEndDate:false,
+            firstName:'',
+            lastName:'',
+            phoneNumber:''
         }
+        this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
+        this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
+        this.changePhoneNumberHandler = this.changePhoneNumberHandler.bind(this);
         this.changeContactIDHandler = this.changeContactIDHandler.bind(this);
         this.changeStartDateHandler = this.changeStartDateHandler.bind(this);
         this.changeEndDateHandler = this.changeEndDateHandler.bind(this);
@@ -67,7 +73,10 @@ class CreateEmployeeComponent extends Component {
                         commMode : employee.comm_mode,
                         preferredStartTime : employee.preferred_stime,
                         preferredEndTime : employee.preferred_etime,
-                        disableStartAndEndDate: disableStartAndEndDatesTemp
+                        disableStartAndEndDate: disableStartAndEndDatesTemp,
+                        firstName:employee.first_name,
+                        lastName: employee.last_name,
+                        phoneNumber:employee.phone_number
                     });
         
                 }
@@ -88,7 +97,8 @@ class CreateEmployeeComponent extends Component {
 
         
         let employee = {accountID:this.state.accountid,contactID: this.state.contactID, startDate: this.state.startDate, endDate: this.state.endDate,
-            commMode: this.state.commMode,preferredStartTime: this.state.preferredStartTime,preferredEndTime: this.state.preferredEndTime,is_registered:this.state.is_registered
+            commMode: this.state.commMode,preferredStartTime: this.state.preferredStartTime,preferredEndTime: this.state.preferredEndTime,is_registered:this.state.is_registered,
+            firstName:this.state.firstName,lastName:this.state.lastName,phoneNumber:this.state.phoneNumber
         };
         console.log('employee => ' + JSON.stringify(employee));
 
@@ -102,6 +112,16 @@ class CreateEmployeeComponent extends Component {
                 this.props.history.push(`/contacts/${this.state.accountid}`);
             });
         }
+    }
+
+    changeFirstNameHandler= (event) => {
+        this.setState({firstName: event.target.value});
+    }
+    changeLastNameHandler= (event) => {
+        this.setState({lastName: event.target.value});
+    }
+    changePhoneNumberHandler= (event) => {
+        this.setState({phoneNumber: event.target.value});
     }
     
     changeContactIDHandler= (event) => {
@@ -158,8 +178,24 @@ class CreateEmployeeComponent extends Component {
                                         <div className = "form-group">
                                             <label> Contact Email ID: </label>
                                             <input placeholder="Contact Email ID" name="contactID" className="form-control" 
-                                                value={this.state.contactID} onChange={this.changeContactIDHandler} />
+                                                value={this.state.contactID} onChange={this.changeContactIDHandler} disabled={this.state.disableStartAndEndDate}/>
                                         </div>
+                                        <div className = "form-group">
+                                            <label> First Name: </label>
+                                            <input placeholder="First Name" name="firstName" className="form-control" 
+                                                value={this.state.firstName} onChange={this.changeFirstNameHandler} disabled={this.state.disableStartAndEndDate}/>
+                                        </div>
+                                        <div className = "form-group">
+                                            <label> Last Name: </label>
+                                            <input placeholder="Last Name" name="lastName" className="form-control" 
+                                                value={this.state.lastName} onChange={this.changeLastNameHandler} disabled={this.state.disableStartAndEndDate}/>
+                                        </div>
+                                        <div className = "form-group">
+                                            <label> Phone Number: </label>
+                                            <input placeholder="Phone Number" name="phoneNumber" className="form-control" 
+                                                value={this.state.phoneNumber} onChange={this.changePhoneNumberHandler} disabled={this.state.disableStartAndEndDate}/>
+                                        </div>
+
                                         <div className = "form-group">
                                             <label> Start Date: </label>
                                             <input placeholder="yyyy-mm-dd" name="startDate" className="form-control" type="date" 
