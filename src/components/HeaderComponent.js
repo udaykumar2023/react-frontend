@@ -14,7 +14,7 @@ class HeaderComponent extends Component {
             <div style={{fontWeight: "bold"}}>
                 <header>
                     <nav className="navbar navbar-expand-md navbar-dark bg-info">
-                    <div><a href="https://javaguides.net" className="navbar-brand">CCPA</a></div>
+                    <div><a  className="navbar-brand">CCPA</a></div>
                     
                     </nav>
                 </header>
