@@ -85,7 +85,9 @@ class CreateEmployeeComponent extends Component {
     }
     saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        let employee = {accountID:"695233040356",contactID: this.state.contactID, startDate: this.state.startDate, endDate: this.state.endDate,
+
+        
+        let employee = {accountID:this.state.accountid,contactID: this.state.contactID, startDate: this.state.startDate, endDate: this.state.endDate,
             commMode: this.state.commMode,preferredStartTime: this.state.preferredStartTime,preferredEndTime: this.state.preferredEndTime,is_registered:this.state.is_registered
         };
         console.log('employee => ' + JSON.stringify(employee));
@@ -93,11 +95,11 @@ class CreateEmployeeComponent extends Component {
         // step 5
         if(this.state.id === '_add'){
             EmployeeService.createEmployee(employee).then(res =>{
-                this.props.history.push('/contacts');
+                this.props.history.push(`/contacts/${this.state.accountid}`);
             });
         }else{
             EmployeeService.updateEmployee(employee, this.state.id).then( res => {
-                this.props.history.push('/contacts');
+                this.props.history.push(`/contacts/${this.state.accountid}`);
             });
         }
     }

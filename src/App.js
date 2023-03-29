@@ -17,7 +17,8 @@ function App() {
                 <div className="container">
                     <Switch> 
                           <Route path = "/" exact component = {ListEmployeeComponent}></Route>
-                          <Route path = "/contacts" component = {ListEmployeeComponent}></Route>
+                          <Route path = "/contacts" exact component = {ListEmployeeComponent}></Route>
+                          <Route path = "/contacts/:accountid" component = {ListEmployeeComponent}></Route>
                           <Route path = "/add-contact/:accountid/:id" component = {CreateEmployeeComponent}></Route>
                           <Route path = "/view-contact/:accountid/:id" component = {ViewEmployeeComponent}></Route>
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}

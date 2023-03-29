@@ -6,6 +6,7 @@ class ListEmployeeComponent extends Component {
         super(props)
 
         this.state = {
+                accountid: this.props.match.params.accountid,
                 employees: [],
                 awsAccountnumber: ''
         }
@@ -28,7 +29,8 @@ class ListEmployeeComponent extends Component {
     }
 
     componentDidMount(){
-        EmployeeService.getEmployees().then((res) => {
+        console.log("this.state.accountid"+this.state.accountid);
+        EmployeeService.getEmployees(this.state.accountid).then((res) => {
             console.log("response:"+res);
             console.log("response:"+JSON.stringify(res));
             let awsAccountnumbertemp;
@@ -53,7 +55,12 @@ class ListEmployeeComponent extends Component {
     }
 
     addEmployee(){
-        this.props.history.push('/add-contact/alternate/_add');
+        if(this.state.accountid!=undefined) {
+            this.props.history.push(`/add-contact/${this.state.accountid}/_add`);
+        } else {
+            this.props.history.push(`/add-contact/${this.state.awsAccountnumber}/_add`);
+
+        }
     }
 
     render() {

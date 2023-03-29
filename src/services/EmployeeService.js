@@ -4,8 +4,17 @@ const EMPLOYEE_API_BASE_URL = "https://8ureh7i7n7.execute-api.ap-south-1.amazona
 
 class EmployeeService {
 
-    getEmployees(){
-        return axios.get("https://8ureh7i7n7.execute-api.ap-south-1.amazonaws.com/test");
+    getEmployees(accountID){
+
+        console.log('accountID'+accountID)
+        if(accountID!=undefined) {
+            let data = {
+                "accountID": accountID
+              };
+            return axios.post("https://8ureh7i7n7.execute-api.ap-south-1.amazonaws.com/test",data);
+        } else {
+            return axios.get("https://8ureh7i7n7.execute-api.ap-south-1.amazonaws.com/test");
+        }
     }
 
     createEmployee(employee){
@@ -30,6 +39,13 @@ class EmployeeService {
             employee.startDate=null;
             employee.endDate=null;
             
+        }
+
+        if(employee.startDate=='0000-00-00') {
+            employee.startDate=null;
+        }
+        if(employee.endDate=='0000-00-00') {
+            employee.endDate=null;
         }
         console.log("employee:"+JSON.stringify(employee));
         return axios.post("https://5venvi7aae.execute-api.ap-south-1.amazonaws.com/TestUpdateContactDetailsByID", employee);
